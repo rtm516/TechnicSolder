@@ -12,6 +12,11 @@ class ModProviders
             'forge' => \App\Mods\Providers\Forge::class
         );
 
+        // If we have a CurseForge api key set add it to the providers list
+        if (!empty(config('solder.curseforge_api_key'))) {
+            $providers['curseforge'] = \App\Mods\Providers\CurseForge::class;
+        }
+
         return $providers;
     }
 }
