@@ -35,6 +35,7 @@ abstract class ModProvider
 
     private static function installVersion(int $modId, string $slug, ImportedModData $modData, string $version)
     {
+        $modVersion = "";
         $url = $modData->versions[$version]->url;
         $fileName = $modData->versions[$version]->filename;
 
@@ -59,8 +60,6 @@ abstract class ModProvider
                 unlink($tmpFileName);
                 return ["mod_corrupt" => "Unable to open mod file for version $version, its likely corrupt"];
             }
-
-            $modVersion = "";
 
             // Try load the version from forge
             $forgeData = $zip->getFromName('mcmod.info');
